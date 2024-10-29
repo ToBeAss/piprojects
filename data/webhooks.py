@@ -1,1 +1,0 @@
-aloe = "https://discord.com/api/webhooks/1279839496577220689/3tY_Wdaw5xBo8Z_wxtS3sy7qjCCh1flXQqJRnjFdweItCw3tof1XabOBWu63gA9oZLuq"

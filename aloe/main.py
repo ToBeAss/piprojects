@@ -1,7 +1,7 @@
 import aloe.sensor as sensor
 import aloe.message as message
 import scripts.discord as discord
-import data.webhooks as webhooks
+import my_secrets.webhooks as webhooks
 
 def main():
     data = sensor.read_data()
