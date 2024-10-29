@@ -4,3 +4,4 @@ __pycache__
 .DS_Store
 nohup.out
 my_secrets/*
+!my_secrets/.gitkeep
