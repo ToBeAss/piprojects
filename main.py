@@ -26,13 +26,13 @@ def main():
             discord.send_to_discord(webhooks.aloe, content)
             temp = []
             data = sensor.get_data()
-            temp.append(temp["Moisture"])
+            temp.append(data["Moisture"])
             sensor.store_data(data)
         else:
             # Read sensor data every minute
             timeout.sleep(next_min)
             data = sensor.get_data()
-            temp.append(temp["Moisture"])
+            temp.append(data["Moisture"])
             sensor.store_data(data)
 
 main()
