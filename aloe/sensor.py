@@ -18,9 +18,6 @@ DATA_FOLDER = "aloe/data/"
 DATA_FILE = "readings.csv"
 SUMMARY_FILE = "hourly_summary.csv"
 
-# Temporary readings
-temp = []
-
 
 def read_sensor():
     # Check if spidev was successfully imported
@@ -46,17 +43,14 @@ def map(raw_data: int):
 
 
 def get_data():
-    global temp
     data = read_sensor()
-    temp.append(data) # Temporarily stores raw data to array
     return {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"), 
         "Moisture": data, 
         "Moisture(%)": map(data)
     }
 
-def get_summary():
-    global temp
+def get_summary(temp: list[int]):
     temp.sort()
     mid = math.floor((len(temp)-1)/2)
 
@@ -65,7 +59,6 @@ def get_summary():
     _avg = sum(temp) / len(temp)
     _med = temp[mid]
 
-    temp = [] # Clear temporary data every hour
     return {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:00"),
         "Avg Moisture" : _avg, 
