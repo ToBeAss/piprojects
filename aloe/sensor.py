@@ -26,7 +26,7 @@ def read_sensor():
     # Check if spidev was successfully imported
     if spidev is None:
         print("spidev is not available. Exiting read_sensor function.")
-        return 800 #None
+        return None
     
     # Initialize SPI
     spi = spidev.SpiDev()
