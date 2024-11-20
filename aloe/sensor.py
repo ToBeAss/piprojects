@@ -50,7 +50,7 @@ def get_data():
     data = read_sensor()
     temp.append(data) # Temporarily stores raw data to array
     return {
-        "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
+        "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"), 
         "Moisture": data, 
         "Moisture(%)": map(data)
     }
