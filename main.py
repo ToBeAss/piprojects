@@ -15,7 +15,7 @@ def main():
         next_min = timeout.next_min()
 
         if (next_hour <= next_min):
-            # Calculate a summary every hour and the result to Discord
+            # Calculate a summary every hour and send the result to Discord
             timeout.sleep(next_hour)
             summary = sensor.get_summary()
             sensor.store_summary(summary)
