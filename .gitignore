@@ -5,3 +5,4 @@ __pycache__
 nohup.out
 my_secrets/*
 !my_secrets/.gitkeep
+logs.txt
