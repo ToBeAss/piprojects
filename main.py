@@ -1,4 +1,4 @@
-import datetime, time
+from datetime import datetime
 import src.timeout as timeout
 import src.discord as discord
 import my_secrets.webhooks as webhooks
