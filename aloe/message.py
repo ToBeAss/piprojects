@@ -9,14 +9,25 @@ def create_message(percentage: int):
     if percentage is None:
         return "I'm not able to read data from the sensor at the moment."
     
-    if percentage < 33.33:
+    if percentage < 20:
+        comment = random_from_list(comments.very_dry)
+        emoji = random_from_list(emojis.dry)
+    elif percentage < 40:
         comment = random_from_list(comments.dry)
         emoji = random_from_list(emojis.dry)
-    elif percentage < 66.67:
+    elif percentage < 60:
         comment = random_from_list(comments.ok)
         emoji = random_from_list(emojis.ok)
-    else:
+    elif percentage < 80:
         comment = random_from_list(comments.wet)
         emoji = random_from_list(emojis.wet)
+    else:
+        comment = random_from_list(comments.very_wet)
+        emoji = random_from_list(emojis.wet)
 
-    return f"{comment}\nMoisture Level: **{percentage}%**\n{emoji}"
+    return (
+        f"### {comment['content']}\n"
+        f"Rarity: **{comment['rarity']}**\n"
+        f"Moisture Level: **{percentage}%**\n"
+        f"### {emoji}"
+    )
