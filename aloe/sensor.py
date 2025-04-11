@@ -10,8 +10,8 @@ except ImportError:
 
 
 # Sensor calibration values
-DRY = 750
-WET = 850
+DRY = 700
+WET = 800
 
 # File paths
 DATA_FOLDER = "aloe/data/"
