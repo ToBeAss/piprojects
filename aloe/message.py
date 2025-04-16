@@ -26,8 +26,8 @@ def create_message(percentage: int):
         emoji = random_from_list(emojis.wet)
 
     return (
-        f"### {comment['content']}\n"
+        f"## {comment['content']}\n"
         f"Rarity: **{comment['rarity']}**\n"
         f"Moisture Level: **{percentage}%**\n"
-        f"### {emoji}"
+        f"## {emoji}"
     )
