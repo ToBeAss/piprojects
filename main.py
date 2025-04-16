@@ -21,9 +21,12 @@ def main():
             summary = sensor.get_summary(temp)
             sensor.store_summary(summary)
             result = summary["Median Moisture(%)"]
-            content = message.create_message(result)
-            discord.send_to_discord(webhooks.aloe, content)
             temp = []  # Temporary readings deleted every hour
+
+            # Send Discord update every 3 hours
+            if datetime.now().hour % 3 == 0:
+                content = message.create_message(result)
+                discord.send_to_discord(webhooks.aloe, content)
 
         # Collect data every minute
         data = sensor.get_data()

@@ -9,6 +9,16 @@ very_dry = [
     {"rarity": "Uncommon", "content": "Even sand has more moisture than me right now."},
     {"rarity": "Uncommon", "content": "My roots are staging a protest — they demand water."},
     {"rarity": "Rare", "content": "*I’ve written my will in dust. If you don’t water me, I’ll haunt your houseplants forever.*"},
+    {"rarity": "Common", "content": "If I had a tongue, it’d be sandpaper."},
+    {"rarity": "Common", "content": "I'm drying out faster than spilled coffee."},
+    {"rarity": "Common", "content": "Just a sip... that’s all I ask."},
+    {"rarity": "Common", "content": "My life is flashing before my eyes, and it's all sand."},
+    {"rarity": "Common", "content": "So... any chance of rain indoors?"},
+    {"rarity": "Common", "content": "My pot echoes when I breathe. That can’t be good."},
+    {"rarity": "Common", "content": "There’s dry... and then there’s *this* nightmare."},
+    {"rarity": "Uncommon", "content": "Desperation smells like dust, and I reek."},
+    {"rarity": "Uncommon", "content": "I’m beginning to suspect you've moved on... to another plant."},
+    {"rarity": "Rare", "content": "*I've begun hallucinating... I think the fern is mocking me.*"},
 ]
 
 dry = [
@@ -22,6 +32,16 @@ dry = [
     {"rarity": "Uncommon", "content": "Is this a drought simulation? What is happening?"},
     {"rarity": "Uncommon", "content": "I’m starting to get crispy."},
     {"rarity": "Rare", "content": "*I’m a sentient raisin now. My dreams of being juicy are officially over.*"},
+    {"rarity": "Common", "content": "Feeling a bit parched, not gonna lie."},
+    {"rarity": "Common", "content": "It’s been a while, huh?"},
+    {"rarity": "Common", "content": "I'm crisping up like autumn leaves."},
+    {"rarity": "Common", "content": "Hydration? Kinda forgot what that feels like."},
+    {"rarity": "Common", "content": "You know I love attention, right? Water counts."},
+    {"rarity": "Common", "content": "Not dying... just dramatically under-hydrated."},
+    {"rarity": "Common", "content": "I wouldn’t say no to a misting."},
+    {"rarity": "Uncommon", "content": "Your silence is loud, and my soil is louder."},
+    {"rarity": "Uncommon", "content": "I'm at the 'licking condensation off windows' stage."},
+    {"rarity": "Rare", "content": "*My internal moisture is now just... wishful thinking.*"},
 ]
 
 ok = [
@@ -35,6 +55,16 @@ ok = [
     {"rarity": "Uncommon", "content": "I’m the Goldilocks of plants — not too dry, not too wet."},
     {"rarity": "Uncommon", "content": "I'm doing well... but how about some snacks with that water?"}, 
     {"rarity": "Rare", "content": "*I’m not thirsty, but my existential crisis is peaking. Water can’t fix this.*"},
+    {"rarity": "Common", "content": "Ahhh. That’s the stuff."},
+    {"rarity": "Common", "content": "I’m in my happy place."},
+    {"rarity": "Common", "content": "No complaints from me today."},
+    {"rarity": "Common", "content": "Everything’s coming up aloe!"},
+    {"rarity": "Common", "content": "Moisture just right — like porridge but for plants."},
+    {"rarity": "Common", "content": "Life’s good. Let’s keep it this way."},
+    {"rarity": "Common", "content": "Feeling cute, might photosynthesize later."},
+    {"rarity": "Uncommon", "content": "I’ve reached inner peace... or maybe it’s just the right pH level."},
+    {"rarity": "Uncommon", "content": "I could write a gratitude journal today. Just saying."},
+    {"rarity": "Rare", "content": "*All is well on the outside... but I still question my purpose.*"},
 ]
 
 wet = [
@@ -47,7 +77,17 @@ wet = [
     {"rarity": "Common", "content": "I feel like I’m swimming in here!"},
     {"rarity": "Uncommon", "content": "You watering or baptizing me?"},
     {"rarity": "Uncommon", "content": "This is turning into a puddle party."},
-    {"rarity": "Rare", "content": "*If I get any wetter, I’m going to start rethinking my career as a houseplant.*"}
+    {"rarity": "Rare", "content": "*If I get any wetter, I’m going to start rethinking my career as a houseplant.*"},
+    {"rarity": "Common", "content": "This feels like overachieving in the water department."},
+    {"rarity": "Common", "content": "No lifeguard on duty, huh?"},
+    {"rarity": "Common", "content": "You sure you didn’t mistake me for a rice paddy?"},
+    {"rarity": "Common", "content": "Moisture levels approaching 'soggy cereal' territory."},
+    {"rarity": "Common", "content": "A little too hydrated, but I’ll manage."},
+    {"rarity": "Common", "content": "Pretty sure I just squelched."},
+    {"rarity": "Common", "content": "Could we dial the hydration back one notch?"},
+    {"rarity": "Uncommon", "content": "I’m holding onto the water like it’s emotional baggage."},
+    {"rarity": "Uncommon", "content": "I’m this close to forming puddle politics."},
+    {"rarity": "Rare", "content": "*I dream of dry lands and freedom from soggy tyranny.*"},
 ]
 
 very_wet = [
@@ -60,5 +100,15 @@ very_wet = [
     {"rarity": "Common", "content": "I’m starting to miss being just slightly damp."},
     {"rarity": "Uncommon", "content": "This is worse than being trapped in a bathtub!"},
     {"rarity": "Uncommon", "content": "Pretty sure I saw a fish swim by."},
-    {"rarity": "Rare", "content": "*I've become one with the water. Photosynthesis is now just a hobby — I mainly float.*"}
+    {"rarity": "Rare", "content": "*I've become one with the water. Photosynthesis is now just a hobby — I mainly float.*"},
+    {"rarity": "Common", "content": "I’m a plant, not a sponge!"},
+    {"rarity": "Common", "content": "My roots are gurgling. That can’t be normal."},
+    {"rarity": "Common", "content": "If this keeps up, I’m gonna need a boat."},
+    {"rarity": "Common", "content": "How much water is *too much* water? Asking for a friend."},
+    {"rarity": "Common", "content": "Current status: soggy and concerned."},
+    {"rarity": "Common", "content": "I’m practically a swamp with leaves."},
+    {"rarity": "Common", "content": "At this point, I'm more water than plant."},
+    {"rarity": "Uncommon", "content": "You’ve watered me into another ecosystem."},
+    {"rarity": "Uncommon", "content": "Should I start growing fins or just surrender?"},
+    {"rarity": "Rare", "content": "*I’ve seen Atlantis... it lives at the bottom of my pot.*"},
 ]
