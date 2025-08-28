@@ -1,33 +1,60 @@
 import math
 import random
+from typing import List, Dict
 from aloe.personality import comments, emojis
 
 def random_from_list(array):
     return array[math.floor(random.random() * len(array))]
 
-def create_message(percentage: int):
-    if percentage is None:
-        return "I'm not able to read data from the sensor at the moment."
-    
-    if percentage < 20:
+def create_message(daily_data: List[Dict[str, int]]):
+    if len(daily_data) == 0:
+        return "No data from the last 24 hours."
+
+    average = round(sum(item["moisture"] for item in daily_data) / len(daily_data))
+
+    if average < 20:
         comment = random_from_list(comments.very_dry)
         emoji = random_from_list(emojis.dry)
-    elif percentage < 40:
+    elif average < 40:
         comment = random_from_list(comments.dry)
         emoji = random_from_list(emojis.dry)
-    elif percentage < 60:
+    elif average < 60:
         comment = random_from_list(comments.ok)
         emoji = random_from_list(emojis.ok)
-    elif percentage < 80:
+    elif average < 80:
         comment = random_from_list(comments.wet)
         emoji = random_from_list(emojis.wet)
     else:
         comment = random_from_list(comments.very_wet)
         emoji = random_from_list(emojis.wet)
 
+    summary_lines = ""
+    previous_summary_value = None
+    for item in daily_data:
+        if item['hour'] % 3 == 0:
+
+            hour_emoji = ""
+            if item['hour'] == 0 or item['hour'] == 12:
+                hour_emoji = "🕛 "
+            elif item['hour'] == 3 or item['hour'] == 15:
+                hour_emoji = "🕒 "
+            elif item['hour'] == 6 or item['hour'] == 18:
+                hour_emoji = "🕕 "
+            elif item['hour'] == 9 or item['hour'] == 21:
+                hour_emoji = "🕘 "
+
+            change_emoji = "➖"
+            if item['moisture'] > previous_summary_value:
+                change_emoji = "🔼"
+            elif item['moisture'] < previous_summary_value:
+                change_emoji = "🔽"
+
+            summary_lines += f"- {hour_emoji}{item['hour']:02d} - {item['moisture']}% {change_emoji}\n"
+            previous_summary_value = item['moisture']
+
     return (
-        f"## {comment['content']}\n"
+        f"## {emoji} {comment['content']} {emoji}\n"
         f"Rarity: **{comment['rarity']}**\n"
-        f"Moisture Level: **{percentage}%**\n"
-        f"## {emoji}"
+        f"### 24h Average Moisture: **{average}%**\n"
+        f"Summary:\n{summary_lines}"
     )
