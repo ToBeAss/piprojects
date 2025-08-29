@@ -43,21 +43,39 @@ def map(raw_data: int):
 
 
 def get_data():
-    data = read_sensor()
+    raw_data = read_sensor()
+    if raw_data is None:
+        return None  # Return None if sensor reading failed
+        
     return {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"), 
-        "Moisture": data, 
-        "Moisture(%)": map(data)
+        "Moisture": raw_data, 
+        "Moisture(%)": map(raw_data)
     }
 
 def get_summary(temp: list[int]):
-    temp.sort()
-    mid = math.floor((len(temp)-1)/2)
+    if not temp or len(temp) == 0:
+        # Return default values if no data
+        return {
+            "Timestamp": datetime.now().strftime("%Y-%m-%d %H:00"),
+            "Avg Moisture" : 0, 
+            "Avg Moisture(%)" : 0, 
+            "Median Moisture" : 0, 
+            "Median Moisture(%)" : 0, 
+            "Min Moisture" : 0, 
+            "Min Moisture(%)" : 0, 
+            "Max Moisture" : 0, 
+            "Max Moisture(%)" : 0
+        }
+    
+    temp_copy = temp.copy()  # Don't modify the original list
+    temp_copy.sort()
+    mid = math.floor((len(temp_copy)-1)/2)
 
-    _min = min(temp)
-    _max = max(temp)
-    _avg = sum(temp) / len(temp)
-    _med = temp[mid]
+    _min = min(temp_copy)
+    _max = max(temp_copy)
+    _avg = sum(temp_copy) / len(temp_copy)
+    _med = temp_copy[mid]
 
     return {
         "Timestamp": datetime.now().strftime("%Y-%m-%d %H:00"),
