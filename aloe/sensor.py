@@ -101,9 +101,14 @@ def store_summary(summary: object):
     write_to_csv(path, fieldnames, summary)
 
 def write_to_csv(path: str, fieldnames: list[str], row: object):
-    with open(path, mode="a", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        # Write header if file is new
-        if file.tell() == 0:
-            writer.writeheader()
-        writer.writerow(row)
+    try:
+        with open(path, mode="a", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            # Write header if file is new
+            if file.tell() == 0:
+                writer.writeheader()
+            writer.writerow(row)
+    except Exception as e:
+        print(f"Error writing to CSV {path}: {e}")
+        # Could send Discord notification here for file system issues
+        raise  # Re-raise to let caller handle
