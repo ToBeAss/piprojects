@@ -29,12 +29,12 @@ def create_message(daily_data: List[Dict[str, int]]):
         emoji = random_from_list(emojis.wet)
 
     summary_lines = ""
-    previous_summary_value = None
+    previous_summary_value = daily_data[0]["moisture"] if daily_data else None
     for item in daily_data:
-        if item['hour'] % 3 == 0:
+        if item['hour'] % 3 == 0 and item['hour'] != 0:
 
             hour_emoji = ""
-            if item['hour'] == 0 or item['hour'] == 12:
+            if item['hour'] == 24 or item['hour'] == 12:
                 hour_emoji = "🕛 "
             elif item['hour'] == 3 or item['hour'] == 15:
                 hour_emoji = "🕒 "

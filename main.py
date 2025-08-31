@@ -34,7 +34,9 @@ def main():
                 if len(hourly_data) > 0:
                     summary = sensor.get_summary(hourly_data)
                     sensor.store_summary(summary)
-                    daily_data.append({"hour": datetime.now().hour, "moisture": summary["Median Moisture(%)"]})  # Collect data every hour from 01 to 24
+                    hour = datetime.now().hour
+                    if hour == 0: hour = 24  # Adjust hour for midnight
+                    daily_data.append({"hour": hour, "moisture": summary["Median Moisture(%)"]})  # Collect data every hour from 01 to 24
                 else:
                     print(f"Warning: No data collected for hour {datetime.now().hour}")
                 hourly_data = []  # Temporary readings deleted every hour
@@ -47,6 +49,7 @@ def main():
                     else:
                         print("Warning: No daily data to send")
                     daily_data = []  # Temporary readings deleted every day
+                    daily_data.append({"hour": 0, "moisture": summary["Median Moisture(%)"]})  # Add midnight reading
                 
         except Exception as e:
             print(f"Error in main loop: {e}")
