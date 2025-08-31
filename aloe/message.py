@@ -44,10 +44,11 @@ def create_message(daily_data: List[Dict[str, int]]):
                 hour_emoji = "🕘 "
 
             change_emoji = "➖"
-            if item['moisture'] > previous_summary_value:
-                change_emoji = "🔼"
-            elif item['moisture'] < previous_summary_value:
-                change_emoji = "🔽"
+            if previous_summary_value is not None:
+                if item['moisture'] > previous_summary_value:
+                    change_emoji = "🔼"
+                elif item['moisture'] < previous_summary_value:
+                    change_emoji = "🔽"
 
             summary_lines += f"- {hour_emoji}{item['hour']:02d} - {item['moisture']}% {change_emoji}\n"
             previous_summary_value = item['moisture']
