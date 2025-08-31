@@ -25,17 +25,28 @@ def read_sensor():
         print("spidev is not available. Exiting read_sensor function.")
         return None
     
-    # Initialize SPI
-    spi = spidev.SpiDev()
-    spi.open(0, 0) # Open SPI bus 0, device (CS) 0
-    spi.max_speed_hz = 1350000 # Set SPI clock speed
+    spi = None
+    try:
+        # Initialize SPI
+        spi = spidev.SpiDev()
+        spi.open(0, 0) # Open SPI bus 0, device (CS) 0
+        spi.max_speed_hz = 1350000 # Set SPI clock speed
 
-    # Read ADC data
-    adc = spi.xfer2([1, (8 + 0) << 4, 0])
-    data = ((adc[1] & 3) << 8) + adc[2]
+        # Read ADC data
+        adc = spi.xfer2([1, (8 + 0) << 4, 0])
+        data = ((adc[1] & 3) << 8) + adc[2]
 
-    # Return raw data
-    return data
+        return data
+    except Exception as e:
+        print(f"Error reading sensor: {e}")
+        return None
+    finally:
+        # CRITICAL: Always close the SPI connection to prevent "Too many open files"
+        if spi is not None:
+            try:
+                spi.close()
+            except:
+                pass
 
 def map(raw_data: int):
     # Return percentage
