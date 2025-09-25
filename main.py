@@ -2,6 +2,7 @@ from datetime import datetime
 import src.reboot as reboot
 import src.timeout as timeout
 import src.discord as discord
+import src.teams as teams
 import my_secrets.webhooks as webhooks
 
 import aloe.sensor as sensor
@@ -44,8 +45,8 @@ def main():
                 # Send Discord update at midnight
                 if datetime.now().hour == 0:
                     if len(daily_data) > 0:
-                        content = message.create_message(daily_data)
-                        discord.send_to_discord(webhooks.aloe, content)
+                        content = message.create_teams_card(daily_data)
+                        teams.send_to_teams(webhooks.kvteams, content)
                     else:
                         print("Warning: No daily data to send")
                     daily_data = []  # Temporary readings deleted every day
