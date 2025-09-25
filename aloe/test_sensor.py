@@ -1,10 +1,6 @@
 import time
 import sensor
-
 from aloe import sensor
-
-hourly_data = []
-daily_data = []
 
 while True:
     try:
