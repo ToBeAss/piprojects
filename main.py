@@ -1,4 +1,5 @@
 from datetime import datetime
+import src.reboot as reboot
 import src.timeout as timeout
 import src.discord as discord
 import my_secrets.webhooks as webhooks
@@ -7,9 +8,8 @@ import aloe.sensor as sensor
 import aloe.message as message
 
 def main():
-    # When the Raspberry Pi is rebooted, it should automatically start the main script an display this message:
     try:
-        discord.send_to_discord(webhooks.piprojects, "System rebooted")
+        reboot.announce_reboot(webhooks.piprojects, iface="wlan0")
     except Exception as e:
         print(f"Failed to send reboot message: {e}")
     
