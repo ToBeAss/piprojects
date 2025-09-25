@@ -14,7 +14,7 @@ DRY = 700
 WET = 800
 
 # File paths
-DATA_FOLDER = "aloe/data/"
+DATA_FOLDER = "aloe/data/"  # aloe/data/
 DATA_FILE = "readings.csv"
 SUMMARY_FILE = "hourly_summary.csv"
 
