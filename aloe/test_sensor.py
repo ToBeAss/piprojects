@@ -11,7 +11,7 @@ while True:
     try:
         data = sensor.get_data()
         print(data)
-        time.sleep(10)
+        time.sleep(1)
     except Exception as e:
         print(f"Error in test_sensor loop: {e}")
         # Continue running instead of crashing

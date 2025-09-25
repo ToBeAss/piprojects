@@ -10,7 +10,7 @@ except ImportError:
 
 
 # Sensor calibration values
-DRY = 700
+DRY = 500  # 700
 WET = 800
 
 # File paths
@@ -30,7 +30,7 @@ def read_sensor():
         # Initialize SPI
         spi = spidev.SpiDev()
         spi.open(0, 0) # Open SPI bus 0, device (CS) 0
-        spi.max_speed_hz = 1350000 # Set SPI clock speed
+        spi.max_speed_hz = 500000 # Set SPI clock speed
 
         # Read ADC data
         adc = spi.xfer2([1, (8 + 0) << 4, 0])
