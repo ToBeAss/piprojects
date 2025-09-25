@@ -36,6 +36,12 @@ def main():
                     summary = sensor.get_summary(hourly_data)
                     sensor.store_summary(summary)
                     hour = datetime.now().hour
+
+                    if hour >= 8 and hour <= 16:
+                        # Send Teams update every hour between 08:00 and 16:00
+                        content = message.create_teams_message(summary["Median Moisture(%)"])
+                        teams.send_to_teams(webhooks.kvteams, content)
+
                     if hour == 0: hour = 24  # Adjust hour for midnight
                     daily_data.append({"hour": hour, "moisture": summary["Median Moisture(%)"]})  # Collect data every hour from 01 to 24
                 else:
@@ -45,8 +51,8 @@ def main():
                 # Send Discord update at midnight
                 if datetime.now().hour == 0:
                     if len(daily_data) > 0:
-                        content = message.create_teams_card(daily_data)
-                        teams.send_to_teams(webhooks.kvteams, content)
+                        content = message.create_message(daily_data)
+                        discord.send_to_discord(webhooks.aloe, content)
                     else:
                         print("Warning: No daily data to send")
                     daily_data = []  # Temporary readings deleted every day

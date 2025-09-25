@@ -61,55 +61,24 @@ def create_message(daily_data: List[Dict[str, int]]):
     )
 
 
-def create_teams_card(daily_data: List[Dict[str, int]]):
-    if not daily_data:
-        return {
-            "type": "message",
-            "attachments": [{
-                "contentType": "application/vnd.microsoft.card.adaptive",
-                "content": {
-                    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                    "type": "AdaptiveCard",
-                    "version": "1.4",
-                    "body": [
-                        {"type": "TextBlock", "text": "No data from the last 24 hours.", "weight": "Bolder"}
-                    ]
-                }
-            }]
-        }
-
-    avg = round(sum(item["moisture"] for item in daily_data) / len(daily_data))
-
-    # your existing buckets
-    if avg < 20:
+def create_teams_message(moisture_percentage: int):
+    if moisture_percentage < 20:
         comment = random_from_list(comments.very_dry)
         emoji = random_from_list(emojis.dry)
-    elif avg < 40:
+    elif moisture_percentage < 40:
         comment = random_from_list(comments.dry)
         emoji = random_from_list(emojis.dry)
-    elif avg < 60:
+    elif moisture_percentage < 60:
         comment = random_from_list(comments.ok)
         emoji = random_from_list(emojis.ok)
-    elif avg < 80:
+    elif moisture_percentage < 80:
         comment = random_from_list(comments.wet)
         emoji = random_from_list(emojis.wet)
     else:
         comment = random_from_list(comments.very_wet)
         emoji = random_from_list(emojis.wet)
 
-    # build summary lines every 3 hours
-    summary_lines = []
-    prev = daily_data[0]["moisture"]
-    for item in daily_data:
-        if item["hour"] % 3 == 0 and item["hour"] != 0:
-            hour = item["hour"]
-            hour_emoji = "🕛 " if hour in (12, 24) else "🕒 " if hour in (3, 15) else "🕕 " if hour in (6, 18) else "🕘 " if hour in (9, 21) else ""
-            change_emoji = "🔼" if item["moisture"] > prev else "🔽" if item["moisture"] < prev else "➖"
-            summary_lines.append(f"- {hour_emoji}{hour:02d} - {item['moisture']}% {change_emoji}")
-            prev = item["moisture"]
-
-    # Adaptive Card
-    card = {
+    return {
         "type": "message",
         "attachments": [{
             "contentType": "application/vnd.microsoft.card.adaptive",
@@ -122,29 +91,17 @@ def create_teams_card(daily_data: List[Dict[str, int]]):
                         "type": "TextBlock",
                         "text": f"{emoji} {comment['content']} {emoji}",
                         "wrap": True,
-                        "size": "Large",
-                        "weight": "Bolder"
-                    },
-                    {
-                        "type": "FactSet",
-                        "facts": [
-                            {"title": "Rarity", "value": str(comment['rarity'])},
-                            {"title": "24h Avg Moisture", "value": f"{avg}%"}
-                        ]
+                        "size": "Medium",
+                        "weight": "Bolder",
+                        "color": "Accent"
                     },
                     {
                         "type": "TextBlock",
-                        "text": "**Summary (every 3h):**",
+                        "text": f"Soil moisture: **{moisture_percentage}%**",
                         "wrap": True,
-                        "spacing": "Medium"
-                    },
-                    {
-                        "type": "TextBlock",
-                        "text": "\n".join(summary_lines) if summary_lines else "_No checkpoints_",
-                        "wrap": True
+                        "size": "Large"
                     }
                 ]
             }
         }]
     }
-    return card
