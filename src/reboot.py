@@ -3,7 +3,13 @@ import socket
 import subprocess
 import time
 from datetime import datetime
-import discord as discord
+import sys
+import os
+
+# Add the parent directory to sys.path to allow imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src import discord
 
 def get_ipv4(prefer_iface="wlan0", timeout_s=45):
     """
