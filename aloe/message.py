@@ -78,21 +78,7 @@ def create_teams_message(moisture_percentage: int):
         comment = random_from_list(comments.very_wet)
         emoji = random_from_list(emojis.wet)
 
-    text_line = f"Soil moisture: {moisture_percentage}%"
-    title = f"{emoji} {comment['content']} {emoji}"
-
+     # SIMPLE card payload (always valid)
     return {
-        "fallback_text": f"{title} — {text_line}",
-        "attachments": [{
-            "contentType": "application/vnd.microsoft.card.adaptive",
-            "content": {
-                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                "type": "AdaptiveCard",
-                "version": "1.4",
-                "body": [
-                    {"type": "TextBlock", "text": title, "wrap": True, "size": "Medium", "weight": "Bolder", "color": "Accent"},
-                    {"type": "TextBlock", "text": f"**{text_line}**", "wrap": True, "size": "Large"}
-                ]
-            }
-        }]
+        "text": f"{emoji} {comment['content']} {emoji}\nSoil moisture: **{moisture_percentage}%**"
     }
