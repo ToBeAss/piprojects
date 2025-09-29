@@ -44,11 +44,12 @@ def main():
                     try:
                         discord.send_to_discord(
                             webhooks.piprojects,
-                            f"[DEBUG] {now:%Y-%m-%d %H:%M:%S} hour={hour} samples={len(hourly_data)} median%={median_pct} (will_send_to_teams={8 <= hour <= 16})"
+                            f"[DEBUG] {now:%Y-%m-%d %H:%M:%S} hour={hour} samples={len(hourly_data)} median%={median_pct} (will_send_to_teams={(hour == 8 or hour == 15) and now.weekday() <= 4})"
                         )
                     except Exception: pass
 
-                    if 8 <= hour <= 16:
+                    # send to Teams only at 8am and 4pm during the work week
+                    if (hour == 8 or hour == 15) and now.weekday() <= 4:
                         content = message.create_teams_message(median_pct)
                         mode, status, err = teams.send_to_teams(webhooks.kvteams, content)
                         # mirror outcome to Discord so you can see it remotely
