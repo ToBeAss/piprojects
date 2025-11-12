@@ -40,6 +40,7 @@ def main():
                     median_pct = summary["Median Moisture(%)"]
                     hour = now.hour
 
+                    """
                     # visibility: always tell Discord what we're about to do
                     try:
                         discord.send_to_discord(
@@ -59,6 +60,7 @@ def main():
                                 f"[DEBUG] Teams send: mode={mode} status={status} err={err or 'None'} at {hour:02d}:00"
                             )
                         except Exception: pass
+                    """
 
                     # daily rollup window
                     daily_hour = 24 if hour == 0 else hour
